@@ -15,7 +15,7 @@ public:
     Car(): id(0), model("Unknow"), color("Unknown"), plate_number("Unknown"), price(0.0){}
     Car(int id,  string model, string color, string plate_number, double price): id(id),  model(model), color(color), plate_number(plate_number), price(price){}
 
-    void setId() {
+    void setId(int id) {
         this->id = id;
     }
 
@@ -24,7 +24,7 @@ public:
     }
 
    
-    void setModel() {
+    void setModel(string model) {
         this->model = model;
     }
 
@@ -32,7 +32,7 @@ public:
         return model;
     }
 
-    void setColor() {
+    void setColor(string color) {
         this->color = color;
     }
 
@@ -40,7 +40,7 @@ public:
         return color;
     }
 
-    void setPlateNumber() {
+    void setPlateNumber(string plate_number) {
         this->plate_number = plate_number;
     }
 
@@ -48,7 +48,7 @@ public:
         return plate_number;
     }
 
-    void setPrice() {
+    void setPrice(double price) {
         this->price = price;
     }
 
@@ -57,7 +57,7 @@ public:
     }
     
 
-    void input_car_info() {
+   virtual void input_car_info() {
         cout << "Enter CAR's ID: ";
         cin >> id;
 
@@ -71,11 +71,11 @@ public:
         cin >> plate_number;
 
         cout << "Enter CAR's Price: ";
-        cin>>price
+        cin >> price;
 
     }
 
-    void output_car_info() {
+   virtual void output_car_info() {
         system("cls");
         cout << "\t\t====================== VIEW CAR ====================== " << endl;
         cout << "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;

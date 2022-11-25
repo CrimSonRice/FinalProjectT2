@@ -130,8 +130,11 @@
     <ClCompile Include="App.cpp" />
     <ClCompile Include="Car.cpp" />
     <ClCompile Include="CarManager.cpp" />
+    <ClCompile Include="DynamicArray.cpp" />
+    <ClCompile Include="ExceptionHandling.cpp" />
     <ClCompile Include="FinalProjectT2.cpp" />
     <ClCompile Include="User.cpp" />
+    <ClCompile Include="UserDao.cpp" />
     <ClCompile Include="UserManager.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

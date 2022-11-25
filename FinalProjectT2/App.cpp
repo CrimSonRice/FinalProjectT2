@@ -24,7 +24,7 @@ public:
 		char choice;
 		int num = 0;
 		string username;
-		UserManager usermanagement;
+		UserManager* usermanagement;
 
 		do {
 			system("cls");
@@ -42,25 +42,25 @@ public:
 			{
 			case ADD_USER: {
 				users.inputUser();
-				usermanagement.addUser(users);
+				usermanagement->addUser(users);
 				break;
 			}
 			case VIEW_USER: {
 				cout << "\t-USER INFO-" << endl;
-				usermanagement.viewUser();
+				usermanagement->viewUser();
 				cout << endl;
 				break;
 			}
 			case EDIT_USER: {
 				cout << "Enter username: ";
 				cin >> username;
-				usermanagement.editUser(username);
+				usermanagement->editUser(username);
 				break;
 			}
 			case DELETE_USER: {
 				cout << "Enter username: ";
 				cin >> username;
-				usermanagement.deleteUser(username);
+				usermanagement->deleteUser(username);
 
 				break;
 			}

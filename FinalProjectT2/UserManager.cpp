@@ -1,34 +1,39 @@
 #pragma once
 #include <iostream>
 #include "User.cpp"
+#include "UserDao.cpp"
 
 using namespace std;
 
-class UserManager : User{
+class UserManager : public UserManagerDAO {
 private:
-	User users[10];
+	User users[100];
 	int count = 0;
 public:
-
-
-	UserManagement() {
+	UserManager() {
 		User user1("Tola", "123", "ADMIN");
-		User user2("Dina", "456", "STAFF");
+		User user2("Dina", "123", "STAFF");
 		users[count++] = user1;
 		users[count++] = user2;
 	}
-
 	void addUser(User user) {
 		users[count] = user;
 		count++;
 	}
-
 	void viewUser() {
 		for (int i = 0; i < count; i++) {
-			users[i].outputUser();
+			if (users[i].getRole() == "ADMIN") {
+				users[i].outputUser();
+				cout << "Type: " << "ADMIN" << endl;
+			}
+			else if (users[i].getRole() == "STAFF") {
+				users[i].outputUser();
+				cout << "Type: " << "NORMAL" << endl;
+			}
+
+
 		}
 	}
-
 	int findUserByName(string name) {
 		for (int i = 0; i < count; i++) {
 			if (users[i].getUsername() == name) {
@@ -37,56 +42,59 @@ public:
 		}
 		return -1;
 	}
-
-
-	User getUserByName(string name) {
-		User user;
+	User* getUserByName(string name) {
+		User* user = nullptr;
 		for (int i = 0; i < count; i++) {
 			if (users[i].getUsername() == name) {
-				return users[i];
+				if (users[i].getRole() == "ADMIN") {
+					users[i].outputUser();
+					cout << "Type: " << "ADMIN" << endl;
+				}
+				else if (users[i].getRole() == "STAFF") {
+					users[i].outputUser();
+					cout << "Type: " << "STAFF" << endl;
+				}
+				return &users[i];
 			}
 		}
 		return user;
 	}
-
-	void editUser(User users[], string username) {
-		string new_username;
-		string new_password;
-		string new_role;
-
-		int found = findUserByName(username);
+	void editUserRole(string name) {
+		string role;
+		int found = findUserByName(name);
 		if (found != -1) {
-			int choice = 0;
-			system("cls");
-			cout << "\t================\t EDIT BY \t================" << endl;
-			cout << "1) Edit Username.\n2)Edit Password.\n3)Edit Role." << endl;
-			cout << "Enter option: ";
-			cin >> choice;
-
-			switch (choice) {
-			case 1:
-				cout << "Enter new username: ";
-				cin >> new_username;
-				users[found].setUsername(new_username);
-				break;
-			case 2:
-				cout << "Enter new password: ";
-				cin >> new_password;
-				users[found], setPassword(new_password);
-				break;
-			case 3:
-				cout << "Enter new role: ";
-				cin >> new_role;
-				users[found].setRole(new_role);
-				break;
-
-			}
+			cout << "Press 1. ADMIN 2. STAFF " << endl;
+			cin >> role;
+			users[found].setRole(role);
+			cout << "Role has been updated" << endl;
 		}
 		else {
-			cout << "Not found" << endl;
+			cout << "not found" << endl;
 		}
 	}
-
+	void editUser(string name) {
+		string userName;
+		string password;
+		string role;
+		int found = findUserByName(name);
+		if (found != -1) {
+			cout << "Enter new name: ";
+			cin >> userName;
+			users[found].setUsername(userName);
+			cout << "Enter new password: ";
+			cin >> password;
+			users[found].setPassword(password);
+			cout << "Enter new role: ";
+			cin >> role;
+			users[found].setRole(role);
+			cout << "username has been updated" << endl;
+		}
+		else {
+			cout << "not found" << endl;
+		}
+	}
+	
+	}
 	void deleteUser(string name) {
 		int found = findUserByName(name);
 		if (found != -1) {
@@ -100,8 +108,17 @@ public:
 			cout << "Not found" << endl;
 		}
 	}
-
-
+	void searchUser(string name) {
+		int found = findUserByName(name);
+		if (found != -1) {
+			for (int i = found; i < count; i++) {
+				users[i].outputUser();
+			}
+		}
+		else {
+			cout << "not found" << endl;
+		}
+	}
 	User* authenticateUser(string username, string password) {
 		User* user = nullptr;
 		for (int i = 0; i < count; i++) {
@@ -111,4 +128,6 @@ public:
 		}
 		return user;
 	}
+
 };
+	
