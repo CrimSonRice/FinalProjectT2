@@ -36,9 +36,6 @@
     <ClCompile Include="UserDao.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ExceptionHandling.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="DynamicArray.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

@@ -8,6 +8,7 @@ using namespace std;
 
 int main()
 {
+	User user;
 	App app;
 	UserManager usermanagement;
 	string username;

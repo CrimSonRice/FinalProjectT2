@@ -3,6 +3,7 @@
 #include "User.cpp"
 #include "UserDao.cpp"
 
+
 using namespace std;
 
 class UserManager : public UserManagerDAO {
@@ -94,7 +95,7 @@ public:
 		}
 	}
 	
-	}
+	
 	void deleteUser(string name) {
 		int found = findUserByName(name);
 		if (found != -1) {
@@ -119,6 +120,7 @@ public:
 			cout << "not found" << endl;
 		}
 	}
+
 	User* authenticateUser(string username, string password) {
 		User* user = nullptr;
 		for (int i = 0; i < count; i++) {
@@ -128,6 +130,5 @@ public:
 		}
 		return user;
 	}
-
 };
 	

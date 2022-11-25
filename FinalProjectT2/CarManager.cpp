@@ -2,7 +2,8 @@
 #include <iostream>
 #include "Car.cpp"
 #include "DynamicArray.cpp"
-#include "ExceptionHandling.cpp"
+#include <iomanip>
+#include <fstream>
 
 using namespace std;
 
@@ -40,21 +41,12 @@ public:
 		return account;
 	}
 
-	Car* getCarByName(string model) {
-		Car* model = nullptr;
-		for (int i = 0; i < count; i++) {
-			if (cars[i]->getModel() == model) {
-				return cars[i];
-			}
-			
-		}
-		return model;
-	}
 
 
-	void AddCar(Car* cars) {
+
+	void AddCar(Car* car) {
 		cars[count] = new Car();
-		cars[count] = cars;
+		cars[count] = car;
 		count++;
 	}
 
@@ -105,7 +97,7 @@ public:
 
 			case 5:
 				cout << "Enter new Price: ";
-				cin >> new_plate_number;
+				cin >> new_price;
 				cars[found].setPrice(new_price) ;
 				break;
 
@@ -171,7 +163,13 @@ public:
 		}
 	}
 	
+	void viewAllCar() {
+		cout << "\t" << "No" << "\t" << "ID " << setw(10) << " " << "Model Name" << setw(10) << " " << "Color" << setw(10)<< " "<<"Plate Number"<< setw(10)<< " "<< "Price"<<setw(10)<< endl;
 
+		for (int i = 0; i < count; i++) {
+			cout << i + 1<<"\t" << cars[i]->getId() << setw(11) << " " << cars[i]->getModel() << setw(16) << " " << cars[i]->getColor() << setw(13) << " " << cars[i]->getPlateNumber() << setw(14) << " " << cars[i]->getPrice() << setw(10) << endl;
+		}
+	}
 	
 
 };
